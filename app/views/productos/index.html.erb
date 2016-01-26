@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Productos</h1>
+<h1>Productos</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Nombre</th>
@@ -16,11 +16,11 @@
     <% @productos.each do |producto| %>
       <tr>
         <td><%= producto.nombre %></td>
-        <td><%= producto.precio %></td>
+        <td><%= number_to_currency(producto.precio) %></td>
         <td><%= producto.stock %></td>
-        <td><%= link_to 'Show', producto %></td>
-        <td><%= link_to 'Edit', edit_producto_path(producto) %></td>
-        <td><%= link_to 'Destroy', producto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', producto, { :class=>"btn btn-primary btn-sm" } %></td>
+        <td><%= link_to 'Edit', edit_producto_path(producto), { :class=>"btn btn-warning btn-sm" } %></td>
+        <td><%= button_to 'Destroy', producto, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Estás seguro?'} %></td>
       </tr>
     <% end %>
   </tbody>

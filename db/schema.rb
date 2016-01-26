@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 20160126202142) do
 
   create_table "productos", force: :cascade do |t|
     t.string   "nombre"
-    t.decimal  "precio"
+    t.decimal  "precio",     precision: 8, scale: 2
     t.integer  "stock"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
 end
