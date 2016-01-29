@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :productos
+  resources :items
+  resources :compras
+
+  root 'productos#index'
+   get 'productos/autocomplete_producto_nombre'
+    resources :productos
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

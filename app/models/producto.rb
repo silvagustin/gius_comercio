@@ -1,4 +1,6 @@
 class Producto < ActiveRecord::Base
+  has_many :items
+
   before_save :default_stock
 
   validates :nombre, presence: true

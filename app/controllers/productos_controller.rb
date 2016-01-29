@@ -1,5 +1,6 @@
 class ProductosController < ApplicationController
   before_action :set_producto, only: [:show, :edit, :update, :destroy]
+  autocomplete :producto, :nombre, :full => true
 
   # GET /productos
   # GET /productos.json
@@ -14,7 +15,15 @@ class ProductosController < ApplicationController
 
   # GET /productos/new
   def new
-    @producto = Producto.new
+    @producto = Producto.all
+
+    if params[:nombre]
+      @producto = Producto.nombre_like("%#{params[:nombre]}%").order('nombre')
+    else
+      @producto = Producto.new
+    end
+
+    #@producto = Producto.new
   end
 
   # GET /productos/1/edit

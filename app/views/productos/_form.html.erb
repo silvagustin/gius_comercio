@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :nombre %><br>
-    <%= f.text_field :nombre %>
+    <%= f.text_field :nombre, data: {autocomplete: productos_autocomplete_producto_nombre_path} %>
   </div>
   <div class="field">
     <%= f.label :precio %><br>
@@ -27,3 +27,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+

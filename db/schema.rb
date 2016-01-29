@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126202142) do
+ActiveRecord::Schema.define(version: 20160128212831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "compras", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer  "cantidad"
+    t.decimal  "precio",      precision: 8, scale: 2
+    t.integer  "producto_id"
+    t.integer  "compra_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "items", ["compra_id"], name: "index_items_on_compra_id", using: :btree
+  add_index "items", ["producto_id"], name: "index_items_on_producto_id", using: :btree
 
   create_table "productos", force: :cascade do |t|
     t.string   "nombre"
@@ -24,4 +41,6 @@ ActiveRecord::Schema.define(version: 20160126202142) do
     t.datetime "updated_at",                         null: false
   end
 
+  add_foreign_key "items", "compras"
+  add_foreign_key "items", "productos"
 end
