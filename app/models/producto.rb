@@ -1,7 +1,7 @@
 class Producto < ActiveRecord::Base
   has_many :items
 
-  before_save :default_stock
+  after_initialize :default_stock
 
   validates :nombre, presence: true
   validates :precio, numericality: {greater_than_or_equal_to: 0.01}
