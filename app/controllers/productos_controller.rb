@@ -35,6 +35,13 @@ class ProductosController < ApplicationController
   def create
     @producto = Producto.new(producto_params)
 
+    if producto_creado = Producto.find_by(nombre: @producto.nombre)
+      producto_creado.precio = @producto.precio
+      producto_creado.stock = producto_creado.stock + @producto.stock
+
+      @producto = producto_creado
+    end
+
     respond_to do |format|
       if @producto.save
         format.html { redirect_to @producto, notice: 'Producto was successfully created.' }
