@@ -19,14 +19,22 @@
     <%= f.label :precio %><br>
     <%= f.text_field :precio %>
   </div>
-  <div class="field">
-    <%= f.label :producto_id %><br>
-    <%= f.text_field :producto_id %>
-  </div>
-  <div class="field">
-    <%= f.label :compra_id %><br>
-    <%= f.text_field :compra_id %>
-  </div>
+
+  <h3>Producto</h3>
+  <!-- http://apidock.com/rails/ActionView/Helpers/FormHelper/fields_for -->
+
+  <%= f.fields_for :producto do |producto_fields| %>
+    <div class="field">
+      <%= producto_fields.label :nombre %><br>
+      <%= producto_fields.text_field :nombre %>
+    </div>
+
+    <div class="field">
+      <%= producto_fields.label :total %><br>
+      <%= producto_fields.label "$ 000000" %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

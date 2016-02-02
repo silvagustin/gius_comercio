@@ -22,8 +22,6 @@ class ProductosController < ApplicationController
     else
       @producto = Producto.new
     end
-
-    #@producto = Producto.new
   end
 
   # GET /productos/1/edit
