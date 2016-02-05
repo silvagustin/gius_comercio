@@ -1,6 +1,48 @@
 <h1>Editing Compra</h1>
 
-<%= render 'form' %>
+<ul>
+  <% for item in @compra.items %>
+    <li><%= item.cantidad %> - <%= item.producto %> (<%= item.precio %>)</li>
+  <% end %>
+</ul>
+
+<%= form_for(@item) do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cantidad %><br>
+    <%= f.number_field :cantidad, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :precio %><br>
+    <%= f.text_field :precio %>
+  </div>
+
+  <div class="field">
+    <%= f.label :producto %><br>
+    <%#= f.collection_select :producto_id, Producto.all, :id, :nombre %>
+    <%= f.text_field :producto_nombre, data: {autocomplete: productos_autocomplete_producto_nombre_path} %>
+  </div>
+
+  <%= f.hidden_field :compra_id, value: @compra.id %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
+
+<%= link_to 'Confirmar compra', confirmar_compra_path(@compra) %>
 
 <%= link_to 'Show', @compra %> |
 <%= link_to 'Back', compras_path %>

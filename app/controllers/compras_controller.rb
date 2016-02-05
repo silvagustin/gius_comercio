@@ -1,5 +1,5 @@
 class ComprasController < ApplicationController
-  before_action :set_compra, only: [:show, :edit, :update, :destroy]
+  before_action :set_compra, only: [:show, :edit, :update, :destroy, :confirmar]
 
   # GET /compras
   # GET /compras.json
@@ -19,6 +19,8 @@ class ComprasController < ApplicationController
 
   # GET /compras/1/edit
   def edit
+    @item = Item.new
+    # @item = @compra.items.build
   end
 
   # POST /compras
@@ -59,6 +61,11 @@ class ComprasController < ApplicationController
       format.html { redirect_to compras_url, notice: 'Compra was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def confirmar
+    @compra.confirmar
+    redirect_to compras_path, notice: "La compra se confirmó!"
   end
 
   private

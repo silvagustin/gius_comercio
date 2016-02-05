@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   resources :items
-  resources :compras
+  resources :compras do
+    get :confirmar, on: :member
+  end
 
   root 'productos#index'
-   get 'productos/autocomplete_producto_nombre'
-    resources :productos
+  get 'productos/autocomplete_producto_nombre'
+  resources :productos
 
 
   # The priority is based upon order of creation: first created -> highest priority.

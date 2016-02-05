@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: "Item was successfully created." }
+        format.html { redirect_to edit_compra_path(@item.compra), notice: "Item was successfully created." }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -70,6 +70,7 @@ class ItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       #params.require(:item).permit(:cantidad, :precio, :compra_id, :producto => [:nombre])
-      params.require(:item).permit(:cantidad, :precio, :compra_id, producto: [:nombre])
+      # params.require(:item).permit(:cantidad, :precio, :compra_id, producto: [:nombre])
+      params.require(:item).permit(:cantidad, :precio, :compra_id, :producto_nombre)
     end
 end

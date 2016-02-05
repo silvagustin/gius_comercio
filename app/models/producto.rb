@@ -3,13 +3,18 @@ class Producto < ActiveRecord::Base
 
   accepts_nested_attributes_for :items
 
-  #before_save :default_stock
-  after_initialize :default_stock
+  before_save :default_stock
+  #after_initialize :default_stock
   #after_create :default_stock
 
   validates :nombre, presence: true
   validates :precio, numericality: {greater_than_or_equal_to: 0.01}
   validates :stock, numericality: {greather_than_or_equal_to: 0}
+
+
+  def to_s
+    nombre
+  end
 
   private
 
